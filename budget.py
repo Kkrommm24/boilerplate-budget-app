@@ -5,6 +5,15 @@ class Category:
     self.total = 0.0
     self.ledger = []
 
+  def __repr__(self):
+    s = f"{self.name:*^30}\n"
+    acc = 0
+    
+    for item in self.ledger:
+      s += f"{item['description']}{item['amount']:>{30 - len(item['description'])}}\n"
+      acc += item['amount']
+    s += f"Total: 123"
+    return s
   def deposit(self, amount, description):
     self.total += amount
     self.ledger.append({"amount": amount, "description": description})
@@ -38,10 +47,10 @@ food.deposit(100, "something")
 food.transfer(25, entertainment)
 food.withdraw(20, "beans")
 print(food.ledger)
-print(entertainment.ledger)
-print(food.get_balance())
-print(entertainment.get_balance())
-
+# print(entertainment.ledger)
+# print(food.get_balance())
+# print(entertainment.get_balance())
+print(str(food))
 
 def create_spend_chart(categories):
   pass
